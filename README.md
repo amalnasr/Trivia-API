@@ -97,7 +97,7 @@ The API will return three error types when requests fail:
  -400: Bad Request
 
  -404: Resource Not Found
- 
+
  -422: Not Processable
 
 ### Endpoints
@@ -241,12 +241,13 @@ The API will return three error types when requests fail:
 
  **Sample**
    - curl -X DELETE http://127.0.0.1:5000/questions/14
-    ```
-    {
+  
+  ```
+  {
       "deleted": 14,
       "success": true
-    }
-    ```
+  }
+  ```
 
 **POST/questions**
 
