@@ -87,15 +87,17 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 Errors are returned as JSON objects in the following format:
 ```
  {
-    "success": False, 
-    "error": 404,
-    "message": "resource not found"
+   "success": False, 
+   "error": 404,
+   "message": "resource not found"
  }
 ```
 The API will return three error types when requests fail:
 
  -400: Bad Request
+
  -404: Resource Not Found
+ 
  -422: Not Processable
 
 ### Endpoints
@@ -124,10 +126,12 @@ The API will return three error types when requests fail:
 ```
 
 **GET '/questions'**
+
  **General**
  - Fetches a paginated set of questions, a total number of questions, all categories and current category string. 
  - Request Arguments(optional): page number
  - Returns: An object with 10 paginated questions, total questions, object including all categories, and current category.
+
  **Sample**
  - curl http://127.0.0.1:5000/questions
  ```
@@ -229,10 +233,12 @@ The API will return three error types when requests fail:
 }
 ```
 **DELETE/questions/{question_id}**
+
  **General**
    - Deletes a specified question using the id of the question.
    - Request Arguments: id - integer
    - Returns: The id of the deleted question. 
+
  **Sample**
    - curl -X DELETE http://127.0.0.1:5000/questions/14
     ```
@@ -243,10 +249,12 @@ The API will return three error types when requests fail:
     ```
 
 **POST/questions**
+
  **General**
    - Creates a new book using the submitted question, answer, category and difficulty.
    - Request Arguments: question-string, answer-string, difficulty-integer, category-integer
    - Returns: The id of the created question. 
+
  **Sample**
    - curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: application/json" -d '{"question":"What is your name?", "answer":"AmalN", "difficulty":"1", "category":"5"}'
    ```
@@ -257,10 +265,12 @@ The API will return three error types when requests fail:
    ```
 
 **POST/questions/search**
+
  **General**
    - Search for a specific question by search term.
    - Request Arguments: searchTerm-string
    - Returns: Searched questions,total questions that met the search term and the current category. 
+
  **Sample**
    - curl http://127.0.0.1:5000/questions/search -X POST -H "Content-Type: application/json" -d '{"searchTerm":"title"}'
    ```
@@ -291,10 +301,12 @@ The API will return three error types when requests fail:
    ```
 
 **GET/categories/{category_id}/questions**
+
  **General**
    - Fetches questions for a specific cateogry specified by id.
    - Request Arguments: id-integer
    - Returns: An object with questions for the specified category, total questions, and current category. 
+
  **Sample**
    - curl http://127.0.0.1:5000/categories/6/questions
    ```
@@ -322,10 +334,12 @@ The API will return three error types when requests fail:
    ```
 
 **POST/quizzes**
+
  **General**
    - Sends a post request in order to get the next question
    - Request Arguments: previous_questions: an array of question id's, quiz_category: a string of the current category.
    - Returns: Single new question object randomly. 
+
  **Sample**
    - curl http://127.0.0.1:5000/quizzes -X POST -H "Content-Type: application/json" -d '{"previous_questions": [], "quiz_category": {"type": "Sports", "id": 6}}'
    ```
