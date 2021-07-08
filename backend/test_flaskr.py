@@ -15,7 +15,7 @@ class TriviaTestCase(unittest.TestCase):
         self.app = create_app()
         self.client = self.app.test_client
         self.database_name = "trivia_test"
-        # I changed the DB bath because I faced problem
+        # I changed the DB bath because I faced problem when connect with DB
         self.database_path = "postgresql://postgres:1996@localhost:5432/trivia_test"
         setup_db(self.app, self.database_path)
 

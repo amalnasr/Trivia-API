@@ -238,7 +238,8 @@ def create_app(test_config=None):
         quiz_category = body.get('quiz_category', None)
 
         try:
-            # Check if category specified
+            
+            # Check if category specified 
             if quiz_category['id']:
                 questions = Question.query.filter_by(
                     category=quiz_category['id']).filter(
