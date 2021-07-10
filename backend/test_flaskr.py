@@ -50,12 +50,20 @@ class TriviaTestCase(unittest.TestCase):
     """
 # Test Get Categories API
 
-    def test_get_categories(self):
+    def test_get_categories(self): # Test for successful operation
         res = self.client().get('/categories')
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['categories'])
+
+    def test_404_get_categories(self): # Test for expected error
+        res = self.client().get('/categories/1000')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
 
  # Test Get Questions API
 

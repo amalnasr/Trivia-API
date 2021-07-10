@@ -238,22 +238,32 @@ def create_app(test_config=None):
         quiz_category = body.get('quiz_category', None)
 
         try:
-            
             # Check if category specified 
             if quiz_category['id']:
-                questions = Question.query.filter_by(
-                    category=quiz_category['id']).filter(
-                    Question.id.notin_(
-                        (previous_questions))).all()
+                all_questions =Question.query.filter(
+                    Question.category==quiz_category['id']).all()
+                questions = Question.query.filter(
+                    Question.id.notin_(previous_questions)).filter(
+                        Question.category==quiz_category['id']).all()
             else:
+                all_questions =Question.query.all()
                 questions = Question.query.filter(
                     Question.id.notin_((previous_questions))).all()
             # Format the result
             formatted_questions = [question.format() for question in questions]
-            # Get only one quetion randomly
-            random_questions = random.choice(formatted_questions)
+            
+            if (len(previous_questions) == len(all_questions)) :
+             random_questions = None
+            else:
+             # Get only one quetion randomly
+             random_questions = random.choice(formatted_questions)
 
-            return jsonify({
+            if random_questions is None:
+               return jsonify({
+                'success': True,
+             })
+            else:
+             return jsonify({
                 'success': True,
                 'question': random_questions
             })
